@@ -1,0 +1,2 @@
+  {"text":"'Of course,' the Dodo replied very gravely. 'What else have you got in your pocket?' he went on, turning to Alice.'Only a thimble,' said Alice sadly.'Hand it over here,' said the Dodo.",
+   "cmd": "[[(i.POS[0],i.lemma,i.word,(i.verb().subject.text(),dict([(k,v.lemma) for k,v in i.verb().slots.items()])) if i.verb() else [0,{}]) for i in sentence.tokens] for sentence in document.sentences]"}

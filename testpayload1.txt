@@ -1,0 +1,2 @@
+  {"text":"'Ugh!' said the Lory, with a shiver.'I beg your pardon!' said the Mouse, frowning, but very politely: 'Did you speak?",
+  "cmd": "[[(i.POS[0],i.lemma,i.word,(i.verb().subject.text(),dict([(k,v.lemma) for k,v in i.verb().slots.items()])) if i.verb() else [0,{}]) for i in sentence.tokens] for sentence in document.sentences]"}

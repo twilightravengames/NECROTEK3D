@@ -1,0 +1,2 @@
+  {"text":"'But they were in the well,' Alice said to the Dormouse, not choosing to notice this last remark.",
+   "cmd": "[[(i.POS[0],i.lemma,i.word,(i.verb().subject.text(),dict([(k,v.lemma) for k,v in i.verb().slots.items()])) if i.verb() else [0,{}]) for i in sentence.tokens] for sentence in document.sentences]"}
