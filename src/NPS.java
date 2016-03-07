@@ -767,9 +767,10 @@ public class NPS {
 					//System.out.println("Pattern " + pattern + " contains templates " + t);
 					//System.out.println("Patterns matched");
 					System.out.println("PATTERNS PART OF SPEECH MATCHED");
-					System.out.println("Origin template " + template);
-					System.out.println("Origin patterns " + source);
-					
+					//System.out.println("Origin template " + template);
+					//System.out.println("Origin patterns " + source);
+					System.out.println("Pattern XML: " + patternXML[0]);
+					System.out.println("Template XML : " + templateXML[0] );
 					//**need to have access to prev noun, current verb, and next noun
 					//if noun is <speakernoun><misc><signalverb> then speakernoun is speaker
 					//if noun is <signalverb><misc><speakernoun> then speakernoun is speaker
@@ -820,8 +821,11 @@ public class NPS {
 				if ((pattern.contains(t)) || (t.contains(pattern)))
 				{
 					System.out.println("Pattern Contains template and template contains pattern");
+					//System.out.println("Pattern: " + pattern);
+					//System.out.println("Template:" + t);
+					
 					System.out.println("Pattern: " + pattern);
-					System.out.println("Template:" + t);
+					System.out.println("Template: " + t );
 					//System.out.println("Pattern " + pattern + " contains templates " + t);
 					System.out.println("match - break");
 
