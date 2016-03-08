@@ -214,40 +214,17 @@ public class NPS {
 			sentenceStack.reverseStack.push(sentenceStack.stack.pop());
 		}
 		
-		//while (!sentenceStack.reverseStack.isEmpty())
-		//{
-			//System.out.println("Reverse Sentence Stack Size is " + sentenceStack.reverseStack.size());
-
-			
-			//System.out.println("Constructing XML Pattern");
-			
-			//get pattern made up of patterntags
 		
-			//scratchpad is empty here and shouldn't be
 		
-			pattern = getXMLPattern(scratchPad);
-			
-			//for (int i=0; i<pattern.XMLPatternType.size();i++)
-			//{
-			//	//pattern is null
-			//	System.out.println("Pattern constructed: " + pattern.XMLPatternType.get(i));
-			//}
-			
-		//}
-		/*
-		System.out.println("Printing XML Pattern");
-		if (pattern.XMLPatternType == null)
-		{
-			System.out.println("XMLType is null");
-		}
-		for (XMLPatternTag tag : pattern.XMLPatternType)
-		{
-			if (tag.name == null)
-			{
-				System.out.println("Tag is null");
-			}
-			System.out.print(tag.name);
-		}*/
+		pattern = getXMLPattern(scratchPad);
+		
+		
+		//should return a pattern
+		//instead it is returning xml gibberish
+		//to make it not spit out gibberish you have to
+		//use the syntax below. that will ive you the entire user pattern
+		System.out.println("TESTA: Pattern Element 0: " + pattern.XMLPatternType.get(0).name);
+		
 		return pattern;
 		
 	}
@@ -611,9 +588,14 @@ public class NPS {
 			sendFlexibleArray();
 		
 			StackToTag stackToTag = new StackToTag();
-			XMLPatternTag = stackToTag.generatePatternTag(element, scratchpad, XMLPatternTag, sentenceStack);
+			
+			// get an xml pattern tag
+			//stackToTag returns multiple pattern tags, an entire pattern
+			XMLPattern xm = new XMLPattern();
+			xm.XMLPatternType.add(stackToTag.generatePatternTag(element, scratchpad, XMLPatternTag, sentenceStack));
 
-			//System.out.println("XML Pattern Tag is " + XMLPatternTag.name);
+			//below is correct
+			System.out.println("XML Pattern Tag is " + xm.XMLPatternType.get(0).name);
 			
 			//System.out.println("FINDPOS XMLPatternTag: " + XMLPatternTag.name);
 
@@ -621,9 +603,9 @@ public class NPS {
 			//System.out.println("getXMLPattern: " + XMLPatternTag.name);
 
 
-			
+			return xm;
 
-			xmlPattern.XMLPatternType.add(XMLPatternTag);		
+			//xmlPattern.XMLPatternType.add(XMLPatternTag);		
 
 		}
 		
@@ -645,7 +627,8 @@ public class NPS {
 		//xml pattern is showing up as null
 		for (int i = 0; i<xmlPattern.XMLPatternType.size();i++)
 		{
-			System.out.println(xmlPattern.XMLPatternType.get(i));
+			System.out.println("NPS Pattern " + xmlPattern.XMLPatternType.get(i));
+			
 		}
 		
 		return xmlPattern;
@@ -678,7 +661,7 @@ public class NPS {
 		return output;
 	}
 
-	public HashMap<String,String> comparePatterns(String source, HashMap<String,String> match, String template)
+	public HashMap<String,String> comparePatterns(XMLPattern source, HashMap<String,String> match, String template)
 	{
 
 		//iterate over templates, everytime it finds a match in
@@ -688,25 +671,35 @@ public class NPS {
 		//If it finishes the pattern without fulfilling the template
 		//then the compariison is rejected.
 		//
-
+		
+		TemplateComparator comparator = new TemplateComparator();
+		comparator.matcher(source, match, template);
+		return match;
+	}
+		/*
+		
 		//iterate over templates
 		//template name
-		List<String> templateList = Arrays.asList(template.split("<"));
+		ArrayList<String> templateList = (ArrayList)Arrays.asList(template.split("<"));
 
 
-		//iterating through template
-		//for (String t : templateList)
-		//{
 
 		System.out.println("PatternsFactory::Launching Compare Patterns");
 
 		for (int i=0;i<templateList.size();i++)
 		{
 			System.out.println("PatternsFactory::Iterating through the templates");
+			
 			String t = templateList.get(i);
 
-			List<String> patternList = Arrays.asList(source.split(">"));
+			System.out.println("Compare Patterns:: current template : " + t);
+			
+		
+			ArrayList<String> patternList = (ArrayList)Arrays.asList(source.split(">"));
 
+			System.out.println("Compare Patterns:: first tag: " + patternList.get(i));
+
+			
 			String t_lemma = null;
 			String pos = null;
 
@@ -718,147 +711,10 @@ public class NPS {
 			String nextNoun = null;
 
 
-
-			//System.out.println("Phrase: " + t + " part of speech " + pos + "lemma" + t_lemma);
-			System.out.println("PatternsFactory: Iterate through patterns");
-			for (int j = 0;j<patternList.size();j++)
-			{
-				//System.out.println("Pattern " + pattern);
-				String pattern = patternList.get(j);
-
-				String phrase = null;
-				String pos2 = null;
-				String lemma = null;
-
-
-
-
-				String [] patternXML = preparePattern(pattern, pos, lemma);
-				//String [] patternXML = null;
-				if (patternXML != null)
-				{
-					System.out.println("Pattern Processed patternXML 0 is " + patternXML[0]);
-					System.out.println("Pattern Procesed patternXML 1 is " + patternXML[1]);
-					System.out.println("Template is: " + t);
-				}
-				//must match template's first half of the tag with 
-				//the pattern tag's first half
-				//note executing the block below
-
-
-				if (templateXML != null && templateXML.length > 0)
-				{
-					//System.out.println("Template Processed XML pattern 0 is  " + patternXML[0]);
-
-					//System.out.println("Template Processed Template 0 is " + templateXML[0]);
-					System.out.println("Template Part of Speech is " + templateXML[0]);
-
-					System.out.println("Template Content " + templateXML[1]);
-				}
-
-
-				System.out.println("PatternsFactory: Performing match");
-				if (templateXML != null && patternXML != null && ((templateXML[0].contains(patternXML[0]) || patternXML[0].contains(templateXML[0]))))
-				{
-					//found a patttern in the template
-					///also this is the last template pattern and it matches
-					//so we assume there is a match
-
-					//System.out.println("Pattern " + pattern + " contains templates " + t);
-					//System.out.println("Patterns matched");
-					System.out.println("PATTERNS PART OF SPEECH MATCHED");
-					//System.out.println("Origin template " + template);
-					//System.out.println("Origin patterns " + source);
-					System.out.println("Pattern XML: " + patternXML[0]);
-					System.out.println("Template XML : " + templateXML[0] );
-					//**need to have access to prev noun, current verb, and next noun
-					//if noun is <speakernoun><misc><signalverb> then speakernoun is speaker
-					//if noun is <signalverb><misc><speakernoun> then speakernoun is speaker
-					//remaining nouns could be speakee
-
-					HashMap<String,String> m = (identifySpeaker(source, template));
-
-					//match is null
-					if (match == null)
-					{
-						System.out.println("m null");
-					}
-
-					match.putAll(m);
-
-					HashMap<String, String> e = (identifySpeakee(source, template));
-
-
-
-					//identifySpeakee(source, template);
-					//printHashMap(match, "Speakers");
-					//printHashMap(e, "Speakees");
-					match.putAll(e);
-
-
-					if (e == null)
-					{
-						System.out.println("speakee is null");
-					}
-
-					if (m == null)
-					{
-						System.out.println("speaker is null");
-					}
-
-					//printHashMap(m, "ted m");
-					//printHashMap(e, "ted e");
-
-					//continue;
-				}
-				if (pattern.contains("templates"))
-				{
-					////template marker, skip over
-					System.out.println("Template Marker");
-					continue;
-				}
-
-				if ((pattern.contains(t)) || (t.contains(pattern)))
-				{
-					System.out.println("Pattern Contains template and template contains pattern");
-					//System.out.println("Pattern: " + pattern);
-					//System.out.println("Template:" + t);
-					
-					System.out.println("Pattern: " + pattern);
-					System.out.println("Template: " + t );
-					//System.out.println("Pattern " + pattern + " contains templates " + t);
-					System.out.println("match - break");
-
-					break;
-				}
-
-
-				System.out.println("PatternsFactory::compare Patterns Nouns to detect identify");
-
-
-				if (patternXML != null) {
-					System.out.println("patternXML.length = " + patternXML.length);
-					if (patternXML.length < 2)
-					{
-						nextNoun = patternXML[j + 1];
-					}
-				}
-				//once if innner loop and outer loop can't find a match
-				//return false, no match between pattern and template
-
-			}
-
-
+			patternsAnalyzer(patternList, templateList, pos, templateXML);
 
 
 		}
-
-		System.out.println("PATTTERNS PARTS OF SPEECH FAILED TO MATCH");
-		System.out.println("SIMPLE WAY FAILED, TRYING TEMPLATES?");
-		System.out.println("Origin template " + template);
-		System.out.println("Origin patterns " + source);
-
-
 
 		return match;
 
@@ -933,15 +789,150 @@ public class NPS {
 	{
 		return null;
 	}
-			
+*/	/*		
 	String [] preparePattern(String pattern, String pos, String lemma)
 	{
-		 String [] patternXML = null;
-		 return patternXML;
-	}
+		 ///String [] patternXML = null;
+		 ///return patternXML;
+	} 
+	*/
+	/*
 	
-	
+	public void patternsAnalyzer(ArrayList<String> patternList, ArrayList<String> templateList, String pos, String [] templateXML)
+	{
+		//System.out.println("Phrase: " + t + " part of speech " + pos + "lemma" + t_lemma);
+		System.out.println("PatternsFactory: Iterate through patterns");
+		for (int j = 0;j<patternList.size();j++)
+		{
+			//System.out.println("Pattern " + pattern);
+			String pattern = patternList.get(j);
+			String t = templateList.get(j);;
+			String phrase = null;
+			String pos2 = null;
+			String lemma = null;
 
+			System.out.println("Pattern List size: " + patternList.size());
+			System.out.println("template List Size " + templateList.size());
+			
+			for (int k = 0;k<templateList.size();k++)
+			{
+				System.out.println("Current Templates " + templateList.get(k));
+			}
+			
+			for (int l = 0;l<patternList.size();l++)
+			{
+				System.out.println("Current Patternse " + patternList.get(l));
+			}
+
+			String [] patternXML = preparePattern(pattern, pos, lemma);
+		
+			if (patternXML != null)
+			{
+				System.out.println("Pattern Processed patternXML 0 is " + patternXML[0]);
+				System.out.println("Pattern Procesed patternXML 1 is " + patternXML[1]);
+				System.out.println("Template is: " + t);
+			}
+			
+			//must match template's first half of the tag with 
+			//the pattern tag's first half
+			//note executing the block below
+
+
+			if (templateXML != null && templateXML.length > 0)
+			{
+				System.out.println("Template Part of Speech is " + templateXML[0]);
+
+				System.out.println("Template Content " + templateXML[1]);
+			}
+
+
+			System.out.println("PatternsFactory: Performing match");
+			if (templateXML != null && patternXML != null && ((templateXML[0].contains(patternXML[0]) || patternXML[0].contains(templateXML[0]))))
+			{
+				System.out.println("Matched Template and Pattern [0]");
+				//found a patttern in the template
+				System.out.println("PATTERNS PART OF SPEECH MATCHED [0]");
+				System.out.println("Pattern XML[0]: " + patternXML[0]);
+				System.out.println("Template XML[0] : " + templateXML[0] );
+				//**need to have access to prev noun, current verb, and next noun
+				//if noun is <speakernoun><misc><signalverb> then speakernoun is speaker
+				//if noun is <signalverb><misc><speakernoun> then speakernoun is speaker
+				//remaining nouns could be speakee
+/*
+				HashMap<String,String> m = (identifySpeaker(source, template));
+
+				//match is null
+				if (match == null)
+				{
+					System.out.println("m null");
+				}
+
+				//match.putAll(m);
+
+				HashMap<String, String> e = (identifySpeakee(source, template));
+
+
+
+				//identifySpeakee(source, template);
+				//printHashMap(match, "Speakers");
+				//printHashMap(e, "Speakees");
+				//match.putAll(e);
+
+
+				if (e == null)
+				{
+					System.out.println("speakee is null");
+				}
+
+				if (m == null)
+				{
+					System.out.println("speaker is null");
+				}
+
+				//printHashMap(m, "ted m");
+				//printHashMap(e, "ted e");
+
+				//continue;
+			}
+			if (pattern.contains("templates"))
+			{
+				////template marker, skip over
+				System.out.println("Template Marker");
+				continue;
+			}
+			System.out.println("pattern and t template match check");
+			if ((pattern.contains(t)) || (t.contains(pattern)))
+			{
+				System.out.println("Pattern Contains pattern.contains(t) and (t.constains(pattern)");
+				//System.out.println("Pattern: " + pattern);
+				//System.out.println("Template:" + t);
+
+				System.out.println("Pattern: " + patternList.get(j));
+				System.out.println("Template: " + t );
+				//System.out.println("Pattern " + pattern + " contains templates " + t);
+				System.out.println("match - break");
+
+				break;
+			}
+
+
+			System.out.println("PatternsFactory::compare Patterns Nouns to detect identify");
+
+
+			if (patternXML != null) {
+				System.out.println("patternXML.length = " + patternXML.length);
+				if (patternXML.length < 2)
+				{
+					//nextNoun = patternXML[j + 1];
+				}
+			}
+			//once if innner loop and outer loop can't find a match
+			//return false, no match between pattern and template
+
+		}
+	}
+
+	}*/	
 }
 
 

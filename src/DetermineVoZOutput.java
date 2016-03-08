@@ -290,7 +290,7 @@ public class DetermineVoZOutput {
 				//conjunction
 
 
-				if (word.startsWith("T") || word.startsWith("I"))
+				if (word.startsWith("T") || word.startsWith("0"))
 				{
 					word = ((JSONArray)inputObject).getString(1);
 					System.out.println("Preposition: :" + word);
@@ -308,7 +308,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("T") || word.startsWith("I"))
 				{
-					word = ((JSONArray)inputObject).getString(2);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Preposition: :" + word);
 					StackElement preposition = new StackElement();
 					preposition.setElementContent(word);
@@ -324,7 +324,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("W"))
 				{
-					word = ((JSONArray)inputObject).getString(1);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Pronouns: :" + word);
 					StackElement pronoun = new StackElement();
 					pronoun.setElementContent(word);
@@ -339,7 +339,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("W"))
 				{
-					word = ((JSONArray)inputObject).getString(2);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Pronouns: :" + word);
 					StackElement pronoun = new StackElement();
 					pronoun.setElementContent(word);
@@ -356,7 +356,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("C"))
 				{
-					word = ((JSONArray)inputObject).getString(1);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Conjunctions: :" + word);
 					StackElement conjunction = new StackElement();
 					conjunction.setElementContent(word);
@@ -383,7 +383,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("C"))
 				{
-					word = ((JSONArray)inputObject).getString(2);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Conjunctions: :" + word);
 					StackElement conjunction = new StackElement();
 					conjunction.setElementContent(word);
@@ -410,7 +410,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("P"))
 				{
-					word = ((JSONArray)inputObject).getString(1);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Poss Pronoun: :" + word);
 					StackElement possesivepronoun = new StackElement();
 					possesivepronoun.setElementContent(word);
@@ -425,7 +425,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("P"))
 				{
-					word = ((JSONArray)inputObject).getString(2);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Poss Pronoun: :" + word);
 					StackElement possesivepronoun = new StackElement();
 					possesivepronoun.setElementContent(word);
@@ -440,7 +440,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("M"))
 				{
-					word = ((JSONArray)inputObject).getString(1);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Verb : :" + word);
 					StackElement mverb = new StackElement();
 					mverb.setElementContent(word);
@@ -455,7 +455,7 @@ public class DetermineVoZOutput {
 
 				if (word.startsWith("M"))
 				{
-					word = ((JSONArray)inputObject).getString(2);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Verb : :" + word);
 					StackElement mverb = new StackElement();
 					mverb.setElementContent(word);

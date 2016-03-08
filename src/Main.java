@@ -40,8 +40,7 @@ public class Main {
 		//!!
 		
 		Main m = new Main();
-		
-		m.matching(npsObject, pattern.XMLPatternType.toString());
+		m.matching(npsObject, pattern);
 		
 		
 		
@@ -55,7 +54,7 @@ public class Main {
 			
 	}
 	
-	public void matching(NPS npsObject, String xmlPattern)
+	public void matching(NPS npsObject, XMLPattern xmlPattern)
 	{
 		TemplateComparator temc = new TemplateComparator();
 		
