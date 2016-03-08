@@ -171,7 +171,7 @@ public class TemplateComparator {
 					//if noun is <signalverb><misc><speakernoun> then speakernoun is speaker
 					//remaining nouns could be speakee
 
-					//*****ashMap<String,String> m = (alignMatchedSpeaker(pattern, template));
+					//HashMap<String,String> m = alignMatchedSpeaker(pattern, template);
 
 					//*match is null
 					//f (m == null)
@@ -216,9 +216,22 @@ public class TemplateComparator {
 					continue;
 				}
 
+				
+				
+				HashMap<String,String> m = null;
+				//match is null
+				if (m == null)
+				{
+					System.out.println("m null");
+				}
+
+				//store solutions
+				//*match.putAll(m);
+				
+				//match template and pattern tags
 				if (xmlPattern != null && t != null)
 				{
-					if ((xmlPattern.XMLPatternType.contains(t)) || (templateString.contains(xmlPattern.XMLPatternType.get(0).name)))
+					if ((xmlPattern.XMLPatternType.contains(t)) || (templateString.contains(xmlPattern.XMLPatternType.get(i).name)))
 					{
 						System.out.println("Pattern Contains template and template contains pattern");
 						System.out.println("Pattern: " + xmlPattern);
@@ -226,7 +239,12 @@ public class TemplateComparator {
 						//System.out.println("Pattern " + pattern + " contains templates " + t);
 						System.out.println("match - break");
 						System.out.println("Aligning....:");
-						//********alignMatchedSpeaker(pattern, t);
+						
+						
+						m = alignMatchedSpeaker(xmlPattern.XMLPatternType.get(j).name, templateString);
+						{
+							System.out.println("XML Pattern is aligned");
+						}
 						break;
 					}
 
@@ -350,27 +368,53 @@ public class TemplateComparator {
 		int speakercounter=0;
 		int tmpcounter =0;
 		StringTokenizer str = new StringTokenizer(template, ">");
-		while (str.hasMoreTokens())
+		while (str.hasMoreTokens()) //while there are more tags
 		{
-			String st = str.nextToken();
+			String st = str.nextToken(); //grab a template tag
 			tmpcounter++;
-			if (st.contains("speakernoun"))
+			
+			//while there are pattern tags
+			StringTokenizer patternTok = new StringTokenizer(pattern, ">"); //tokenizzer on pattern
+			while (patternTok.hasMoreTokens())
 			{
-				StringTokenizer patternTok = new StringTokenizer(pattern, ">");
-				while (patternTok.hasMoreTokens())
+				//spilt pattern tag
+				String patternTag = patternTok.nextToken(); //grab a pattern tag				
+				
+				StringTokenizer ptoken = new StringTokenizer(patternTag); //grab a pattern tag
+				
+				while (ptoken.hasMoreTokens())
 				{
 					speakercounter++;
-					String tr = patternTok.nextToken();
+					
+					String patternTagToken = ptoken.nextToken(); //grab a pattern tag
+					
+					String [] strArray = patternTagToken.split(":"); ///split over colon
+					
+					String nameOfToken = strArray[1];
+					String partOfSpeech = strArray[0];
+					
+					System.out.println("Namae of Token: " + nameOfToken);
+					System.out.println("Part of Speech" + partOfSpeech);
+					
+					
+					//split template
+					String [] tArray = template.split(":");
+					String nameOfTemplateToken = tArray[0];
+					String partOfSpeechTemplate = tArray[1];
+		
+					
 					if (speakercounter == tmpcounter)
 					{
 						//positional match
 						System.out.println("Discovered a positional matvh");
-						System.out.println("Template: " + st);
-						System.out.println("Pattern: " + tr);
+						System.out.println("Template Name: " + nameOfTemplateToken);
+						System.out.println("Template Part of Speech " +  partOfSpeechTemplate);
+						System.out.println("Pattern Name: " + nameOfToken);
+						System.out.println("Part of Speech" + partOfSpeech);
 						
 						//save results
 						HashMap<String, String> hash = new HashMap<String,String>();
-						hash.put(st, tr);     //template and pattern words
+						hash.put(nameOfToken, nameOfTemplateToken);     //template and pattern words
 						
 						return (hash);
 					}
@@ -381,6 +425,11 @@ public class TemplateComparator {
 		return null;
 	}
 
+	
+	
+	
+	
+	
 	//A:: XML LISTS ARE SHOWING UP AS NULL!!! NOT GOOD!!@!
 	public void printXMLList(String [] xMLList, String name)
 	{
