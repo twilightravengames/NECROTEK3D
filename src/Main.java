@@ -18,7 +18,7 @@ public class Main {
 			
 		//this loads the  text file line by line
 		//into a stack (fileString)
-		npsObject.run("testpayload4.txt");
+		npsObject.run("testpayload10.txt");
 		
 		
 		//this runs VoZ feeding it the document file

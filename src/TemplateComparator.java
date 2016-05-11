@@ -580,6 +580,8 @@ public class TemplateComparator {
 		
 		}
 		
+		//should be only working with source past single quote
+		//code below
 		for (int i = quote_location; i<source.size();i++)
 		{
 			System.out.println("Quote location:" + i);
@@ -614,6 +616,15 @@ public class TemplateComparator {
 						{
 							System.out.println(finalSource.get(k) + " " + k);
 						}
+						
+						
+						for (int k=0;k<finalSource.size();k++)
+						{
+							//iterate through tags of final source 
+							
+						}
+						//know location in template, now need to find correspondance
+						//in source pattern
 					}		
 				}	
 			}
@@ -638,6 +649,9 @@ public class TemplateComparator {
 						{
 							System.out.println(finalSource.get(k) + " " + k);
 						}
+						
+						//know location in template, now for location in source pattern
+						
 					}		
 
 				}
@@ -649,10 +663,10 @@ public class TemplateComparator {
 		System.out.println("speakee:: value at template_ctr" + finalSource.get(template_ctr));
 		//System.out.println("Template Check - source at template_Ctr: " + source.get(template_ctr-1));
 		
-		if ((finalSource.get(template_ctr).equals("noun") ))
+		if ((finalSource.get(template_ctr).equals("speakernoun") || finalSource.get(template_ctr).equals("noun") ))
 		{
 			//found a speaker
-			System.out.println("IDENTIFIED A SPEAKEE: " + values.get(template_ctr));
+			System.out.println("IDENTIFIED A SPEAKEE: " + values.get(template_ctr+2));
 			//System.exit(-1);
 			
 		}
