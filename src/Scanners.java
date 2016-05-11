@@ -53,9 +53,14 @@ public class Scanners {
 		public XMLPatternTag sposSignalVerbs(StackElement emt, ScratchPad scratchpad)
 		{
 			XMLPatternTag patternTag = new XMLPatternTag();
+			System.out.println("Signal Verb Size: " + scratchpad.signalVerb.size());
+			System.out.println("Stack Element Content is " + emt.elementContent);
+			
+			
 			
 			for (int i=0;i<scratchpad.signalVerb.size();i++)
 			{
+				System.out.println("Printing all signal verbs: " + scratchpad.signalVerb.get(i));
 				if (emt.elementContent.contains(scratchpad.signalVerb.get(i)))
 				{
 					System.out.println("SPOS: Found a signal verb!");
@@ -315,6 +320,42 @@ public class Scanners {
 			return patternTag;
 			
 		}
+		
+		public XMLPatternTag sposSingleQuotes(StackElement emt, ScratchPad scratchpad)
+		{
+			XMLPatternTag patternTag = new XMLPatternTag();
+			System.out.println("Scratch Pad single quote");
+			for (int i=0;i<scratchpad.single_quote.size();i++)
+			{
+				if (emt.elementContent.contains("\'"))
+				{
+					System.out.println("SPOS: Found a single quote!");
+					patternTag.name = "<singlequote:singlequote" +">";
+					System.out.println("STAG: Quote is : " + patternTag.name);
+
+				}
+			}
+			return patternTag;
+			
+		}
+		
+		public XMLPatternTag sposCloseQuotes(StackElement emt, ScratchPad scratchpad)
+		{
+			XMLPatternTag patternTag = new XMLPatternTag();
+			
+			for (int i=0;i<scratchpad.close_quote.size();i++)
+			{
+				if (emt.elementContent.contains(scratchpad.close_quote.get(i)))
+				{
+					System.out.println("SPOS: Found a close quote!");
+					patternTag.name = "<close_quote:" + emt.elementContent+">";
+					System.out.println("STAG: Close Quote Tag is : " + patternTag.name);
+
+				}
+			}
+			return patternTag;
+		}
+
 //			//found a quote tag as well. assigns it open quote then close
 //
 //			public XMLPatternTag scanQuotes(StackElement elmnt, ScratchPad scratchpad, XMLPatternTag xmlPatternTag,  Deque<StackElement> reverseStack )		

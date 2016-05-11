@@ -10,7 +10,7 @@ public class DetermineVoZOutput {
 	
 		public void runVoZDeterminer(ScratchPad scratchPad, Object inputObject, int ctr)
 		{
-
+			System.out.println("Running VoZ Determiner");
 			try {
 			//ITS ONLY SHOWING NOUN TAGS AND ITS SHOWING MULTIPLES OF THEM
 
@@ -56,7 +56,7 @@ public class DetermineVoZOutput {
 				StackElement completeElmntContP2 = null;
 				StackElement completeELmntContX2 = null;
 
-
+				StackElement completeElmntCont3 = null;
 
 
 
@@ -92,7 +92,7 @@ public class DetermineVoZOutput {
 				{
 					System.out.println("VERB");
 					//Below gets the following information
-					word = ((JSONArray)inputObject).getString(1);
+					word = ((JSONArray)inputObject).getString(0);
 					System.out.println("Inside a verb, string is " + word);
 					System.out.println("Verbs: Captured verb: " + word);
 					StackElement wordElementContent = new StackElement();
@@ -111,7 +111,58 @@ public class DetermineVoZOutput {
 
 					//extractVerbArguments(arrayBracketSystem, scratchPad);
 					//ctr--;
-
+						//never comes accross said in WORD IS
+					System.out.println("WORD IS " + word);
+					if (word.contains("say"))
+					{
+						scratchPad.signalVerb.add("say");
+					
+					}
+					
+					if (word.contains("said"))
+					{
+						System.out.println("Word contains said");
+						scratchPad.signalVerb.add("said");
+						System.exit(-1);
+						
+					}
+					
+					if (word.contains("says"))
+					{
+						scratchPad.signalVerb.add("says");
+					}
+					
+					if (word.contains("replied"))
+					{
+						scratchPad.signalVerb.add("replied");	
+					}
+					if (word.contains("called"))
+					{
+						scratchPad.signalVerb.add("called");
+					}
+					
+					if (word.contains("speak"))
+					{
+						scratchPad.signalVerb.add("speak");
+						
+					}
+					
+					if (word.contains("spoke"))
+					{
+						scratchPad.signalVerb.add("spoke");
+					}
+					
+					if (word.contains("ask"))
+					{
+						scratchPad.signalVerb.add("ask");
+					}
+					
+					if (word.contains("asked"))
+					{
+						scratchPad.signalVerb.add("asked");
+					}
+					
+					
 				}
 
 				if (word.startsWith("V"))
@@ -139,7 +190,24 @@ public class DetermineVoZOutput {
 
 				}
 
+				if (word.startsWith("V"))
+				{
+					System.out.println("VERB3");
+					//Below gets the following information
+					word = (((JSONArray)inputObject).getString(1));
+					System.out.println("Inside a verb, string is " + word);
+					System.out.println("Verbs: Captured verb: " + word);
+					StackElement wordElementContent = new StackElement();
+					System.out.println("wordElementContent" + wordElementContent.elementContent);
+					wordElementContent.setElementContent(word);
+					completeElmntCont3 = punc.stripElementPunctuation(wordElementContent);
+					completeElmntCont3.isVerb = true;
+					completeElmntCont3.isNoun = false;
+					System.out.println("completeElmnTont" + completeElmntCont.elementContent);
 
+					
+					
+				}
 
 				//=
 				//testing NOUN again
@@ -468,49 +536,49 @@ public class DetermineVoZOutput {
 					//actr--;
 				}
 
-				if (word.contains("?") && !scratchPad.close_quote.contains("close quote"))
+				if (word.contains("?") && !scratchPad.close_quote.contains("closequote"))
 
 				{
 					System.out.println("Close Quote Question Mark discovered");
-					scratchPad.close_quote.add("close quote");
+					scratchPad.close_quote.add("closequote");
 
 					//only exeutes once
 					System.out.println("Adding closing quote to scratchpad: ");
 
 				}
 
-				if (word.contains(".") && !scratchPad.close_quote.contains("close quote"))
+				if (word.contains(".") && !scratchPad.close_quote.contains("closequote"))
 
 				{
 					System.out.println("Close Quote Period discovered");
-					scratchPad.close_quote.add("close quote");
+					scratchPad.close_quote.add("closequote");
 
 					//only exeutes once
 					System.out.println("Adding closing quote to scratchpad: ");
 
 				}
 
-				if (word.contains("!") && !scratchPad.close_quote.contains("close quote"))
+				if (word.contains("!") && !scratchPad.close_quote.contains("closequote"))
 
 				{
 					System.out.println("Close Quote Exclamation Mark discovered");
-					scratchPad.close_quote.add("close quote");
+					scratchPad.close_quote.add("closequote");
 
 					//only exeutes once
 					System.out.println("Adding closing quote to scratchpad: ");
 
 				}
 
-				if (word.contains(",'") && !scratchPad.close_quote.contains("close quote"))				
+				if (word.contains(",'") && !scratchPad.close_quote.contains("closequote"))				
 				{
 					System.out.println("Close Comma Quote discovered");
-					scratchPad.close_quote.add("close quote");
+					scratchPad.close_quote.add("closequote");
 
 					//only exeutes once
 					System.out.println("Adding closing quote to scratchpad: ");
 				}
 
-				if (word.contains("\"") && !scratchPad.open_quote.contains("open quote"))				
+				if (word.contains("\"") && !scratchPad.open_quote.contains("openquote"))				
 				{
 					System.out.println("Open Comma Quote discovered");
 					scratchPad.open_quote.add("open quote");
@@ -519,50 +587,64 @@ public class DetermineVoZOutput {
 					System.out.println("Adding open quote to scratchpad: ");
 					//System.exit(-1);
 				}
-				
-				if (word.contains("say"))
+
+				if (word.contains("\'"))
 				{
-					scratchPad.signalVerb.add("say");
+					System.out.println("Open Single Quote discovered");
+					scratchPad.single_quote.add("singlequote");
+
+					//only exeutes once
+					System.out.println("Adding single quote to scratchpad: ");
+					//System.exit(-1);
 				}
 				
-				if (word.contains("said"))
-				{
-					scratchPad.signalVerb.add("said");
-				}
 				
-				if (word.contains("says"))
-				{
-					scratchPad.signalVerb.add("says");
-				}
-				
-				if (word.contains("replied"))
-				{
-					scratchPad.signalVerb.add("replied");	
-				}
-				if (word.contains("called"))
-				{
-					scratchPad.signalVerb.add("called");
-				}
-				
-				if (word.contains("speak"))
-				{
-					scratchPad.signalVerb.add("speak");
-				}
-				
-				if (word.contains("spoke"))
-				{
-					scratchPad.signalVerb.add("spoke");
-				}
-				
-				if (word.contains("ask"))
-				{
-					scratchPad.signalVerb.add("ask");
-				}
-				
-				if (word.contains("asked"))
-				{
-					scratchPad.signalVerb.add("asked");
-				}
+//				if (word.contains("say"))
+//				{
+//					scratchPad.signalVerb.add("say");
+//					System.exit(-1);
+//				}
+//				
+//				if (word.contains("said"))
+//				{
+//					System.out.println("Word contains said");
+//					scratchPad.signalVerb.add("said");
+//					System.exit(-1);
+//				}
+//				
+//				if (word.contains("says"))
+//				{
+//					scratchPad.signalVerb.add("says");
+//				}
+//				
+//				if (word.contains("replied"))
+//				{
+//					scratchPad.signalVerb.add("replied");	
+//				}
+//				if (word.contains("called"))
+//				{
+//					scratchPad.signalVerb.add("called");
+//				}
+//				
+//				if (word.contains("speak"))
+//				{
+//					scratchPad.signalVerb.add("speak");
+//				}
+//				
+//				if (word.contains("spoke"))
+//				{
+//					scratchPad.signalVerb.add("spoke");
+//				}
+//				
+//				if (word.contains("ask"))
+//				{
+//					scratchPad.signalVerb.add("ask");
+//				}
+//				
+//				if (word.contains("asked"))
+//				{
+//					scratchPad.signalVerb.add("asked");
+//				}
 
 
 				/////////////////////////////////////////////////
@@ -634,6 +716,18 @@ public class DetermineVoZOutput {
 					//scratchpad.verb.remove(j);
 				}
 
+				if ((completeElmntCont3 != null && !scratchPad.directVerb.contains(completeElmntCont3.getElementContent())))
+
+					//direct verb
+				{
+
+					System.out.println("direct Verb detected");
+
+					scratchPad.directVerb.add(completeElmntCont3.getElementContent());
+
+					//scratchpad.directVerb.add(elmnt.getElementContent());
+					//scratchpad.verb.remove(j);
+				}
 
 
 				//if(!scratchPad.verb.contains(completeElmntCont2))
@@ -875,6 +969,58 @@ public class DetermineVoZOutput {
 				}//add also close quote. the words open quote
 				//must be exact for PatternFactory
 
+				if (word.contains("say"))
+				{
+
+					System.out.println("Say discovered");
+					scratchPad.signalVerb.add("say");
+					System.out.println("Adding say to scratchpad: ");
+
+				}
+				
+				
+				if (word.contains("said"))
+				{
+					System.out.println("Word contains said");
+					System.out.println("Adding said to scratchpad: ");
+					scratchPad.signalVerb.add("said");
+				}
+				
+				if (word.contains("says"))
+				{
+					scratchPad.signalVerb.add("says");
+				}
+				
+				if (word.contains("replied"))
+				{
+					scratchPad.signalVerb.add("replied");	
+				}
+				if (word.contains("called"))
+				{
+					scratchPad.signalVerb.add("called");
+				}
+				
+				if (word.contains("speak"))
+				{
+					scratchPad.signalVerb.add("speak");
+				}
+				
+				if (word.contains("spoke"))
+				{
+					scratchPad.signalVerb.add("spoke");
+				}
+				
+				if (word.contains("ask"))
+				{
+					scratchPad.signalVerb.add("ask");
+				}
+				
+				if (word.contains("asked"))
+				{
+					scratchPad.signalVerb.add("asked");
+				}
+
+				
 				//if the word has a ? but doesn't contain a close quote already proceed
 
 

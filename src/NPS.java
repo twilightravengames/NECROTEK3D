@@ -480,7 +480,7 @@ public class NPS {
 				System.out.println("Pronouns: " + scratchPad.pronouns.size());
 				System.out.println("Conjunctions: " + scratchPad.conjunction.size());
 				System.out.println("Possesive Pronouns: " + scratchPad.pos_pronoun.size());
-				
+				System.out.println("Single Quotes: " + scratchPad.single_quote.size());
 				for (int i=0;i<scratchPad.signalVerb.size();i++)
 				{
 					System.out.println("Signal verbs are: " + scratchPad.signalVerb.get(i));

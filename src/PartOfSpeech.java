@@ -23,6 +23,8 @@ public class PartOfSpeech {
 	//
 	public boolean quote;
 	
+	public boolean singlequote;
+	
 	public boolean isQuote() {
 		return quote;
 	}

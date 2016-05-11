@@ -90,6 +90,7 @@ public class ScratchPad {
 	public ArrayList<ArgumentPOS> arguments = new ArrayList<ArgumentPOS>();
 	
 	public ArrayList<String> quote = new ArrayList<String>();
+	
 
     public ArrayList<String> getPos_pronoun() {
 		return pos_pronoun;
@@ -100,6 +101,8 @@ public class ScratchPad {
 	}
 
 	public ArrayList<String> open_quote = new ArrayList<String>();
+	
+	public ArrayList<String> single_quote = new ArrayList<String>();
 	
 	public ArrayList<String> prep = new ArrayList<String>();
 	
@@ -254,6 +257,14 @@ public class ScratchPad {
 			
 			quote.add(word);
 		}
+		
+		if (pOS.singlequote == true)
+		{
+			System.out.println("writeToScratchPad(): Writing a single quote");
+			
+			single_quote.add(word);
+		}
+	
 		
 	}
 	

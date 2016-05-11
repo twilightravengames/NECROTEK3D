@@ -292,6 +292,38 @@ public class ScannersPOS {
 			return xmlPatternTag; 
 		}
 		 
+		
+		public XMLPatternTag scanSingleQuotes(StackElement elmnt, ScratchPad scratchpad, XMLPatternTag xmlPatternTag,  Deque<StackElement> reverseStack )		
+		{
+			System.out.println("scanQuotes is detecting " + scratchpad.single_quote.size() + " size");
+			boolean eraseQuotes = false;
+			//for (int k = 0; k<scratchpad.quote.size();k++)
+			for (String qa: scratchpad.single_quotee)				
+			{
+				System.out.println("Found a single quote");
+				System.out.println("size : " + scratchpad.single_quote.size());
+				//scratchpad.quote.remove(qa);
+
+				if (scratchpad.single_quote.contains("singlequote"))
+				{
+					//if (!xmlPatternTag.name.contains(qa))	
+					//{
+					System.out.println("Found a quote - single");
+					xmlPatternTag.name = xmlPatternTag.name + "<singlequote:singlequote>";
+					//scratchpad.quote.add("open quote");'
+					eraseQuotes = true;
+					//}								
+				}
+
+			}
+
+			if (eraseQuotes == true)
+			{
+				scratchpad.open_quote.remove("open quote");
+			}
+
+			return xmlPatternTag; 
+		}
 
 		//OOOOOOOOOOOOOOOOOOOO
 

@@ -26,18 +26,18 @@ public class JSONStringPunctuationUtility {
 		
 		JSONString jString = stripCommas(word);
 		System.out.println("Commas jstring stripped " + jString.getElementContent());
-		JSONString jString2 = stripDoubleQuotes(jString);
-		System.out.println("Double Quotes jstring stripped " + jString2.elementContent);
-		JSONString jString3 = stripQuotes(jString2);
-		System.out.println("Strip Quotes jstring stripped " + jString3.elementContent);
+		//JSONString jString2 = stripDoubleQuotes(jString);
+		//System.out.println("Double Quotes jstring stripped " + jString2.elementContent);
+		//JSONString jString3 = stripQuotes(jString2);
+		//System.out.println("Strip Quotes jstring stripped " + jString3.elementContent);
 		
-		JSONString jString4 = stripPeriods(jString3);
+		JSONString jString4 = stripPeriods(jString);
 		System.out.println("Strip periods jstring stripped" + jString4.elementContent);
 		
-		JSONString jString5 = stripSingleQuote(jString4);
-		System.out.println("Strip single quote jstring stripped" + jString5.elementContent);
+		//JSONString jString5 = stripSingleQuote(jString4);
+		//System.out.println("Strip single quote jstring stripped" + jString5.elementContent);
 		
-		JSONString jString6 = stripQuestionMark(jString5);
+		JSONString jString6 = stripQuestionMark(jString4);
 		System.out.println("Strip quetsion mark jstring stripped" + jString6.elementContent);
 		
 		JSONString jString7 = stripNulls(jString6);

@@ -183,6 +183,29 @@ public class StackToTag {
 				}
 
 				tempTag = null;
+
+				if (tempTag == null)
+				{
+					System.out.println("Inside second tempTag loop");
+					tempTag = spos.sposSingleQuotes(elmnt, scratchpad);
+					finalTag.name = finalTag.name+tempTag.name;
+					System.out.println("single quotes temp tag is " + tempTag.name);
+
+				}
+
+				tempTag = null;
+
+				if (tempTag == null)
+				{
+					System.out.println("Inside second tempTag loop");
+					tempTag = spos.sposCloseQuotes(elmnt, scratchpad);
+					finalTag.name = finalTag.name+tempTag.name;
+					System.out.println("close quotes temp tag is " + tempTag.name);
+
+				}
+
+				
+				
 				
 				if (tempTag == null)
 				{
@@ -312,6 +335,8 @@ public class StackToTag {
 				 */
 
 				previous = elmnt;
+				
+				System.out.println("FINALL SCRATCHPAD NOUN SIZE IS: " + scratchpad.noun.size());
 
 				System.out.println("FINAL: Final Pattern is" + finalTag.name);
 

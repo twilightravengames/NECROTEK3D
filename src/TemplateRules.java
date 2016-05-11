@@ -171,7 +171,7 @@ public class TemplateRules {
 	//Here the subject is anonymous, we just know her gender. ANd the speakee is you
 	
 	
-	final String rule7 = "<template:seven><quote:openquote><signalverb:told><quote:openquote><misctext:misc><quote:closequote><template:end>";
+	final String rule7 = "<template:seven><quote:openquote><signalverb:told><directobject:him><quote:openquote><misctext:misc><quote:closequote><template:end>";
 	
 	
 	//Rule Type 8: False Quoted Text
@@ -180,7 +180,7 @@ public class TemplateRules {
 	//The devil wrinkled up his face when the soldier addressed him as "My good man!"
 	//Here the speakernoun is the devil and the direct object is the soldier
 	
-	final String rule8 = "<template:eight><quote:openquote><speakernoun:The Devil><directverb:wrinkled><misctext:misc></misctext><quote:openquote><speakee:soldier><misctext:misc><quote:closequote><template:end>";
+	final String rule8 = "<template:eight><quote:openquote><speakernoun:The Devil><directverb:wrinkled><misctext:misc></misctext><quote:openquote><directobject:soldier><misctext:misc><quote:closequote><template:end>";
 	
 	//Rule Type 9: Entire Dialogue Utterance without Quotes
 
@@ -194,11 +194,11 @@ public class TemplateRules {
 
 	//“Albert,” he said. Seren wondered…could this be his brother? It was so long ago the image of him in his mind had faded.
 
-	final String rule10 = "<template:tenth><quote:openquote><speakee:Seren><signalverb:said><quote:closequote><speakernoun:Seren><misctext></misc>";
+	final String rule10 = "<template:tenth><quote:openquote><directobject:Seren><signalverb:said><quote:closequote><speakernoun:Seren><misctext></misc>";
 	
 	//Rule Type 11: Engineered demo  template
 	
-	final String rule11 = "<template:eleven><quote:openquote><noun:hat><signalverb:said><noun:sword><directverb:shield><template:end>";
+	final String rule11 = "<template:eleven><quote:openquote><noun:hat><signalverb:said><noun:sword><directverb:shield><directobject:knight><template:end>";
 	
 	//Rule Type 12: speaker nouns
 	final String rule12 = "<template:twelfth><quote:openquote><speakernoun:Jason><directverb:flew><misctexct:misc><directobject:Sarah><signalverb:said>";
@@ -211,17 +211,17 @@ public class TemplateRules {
 	 */
 	
 	//rule Type 13: test
-	final String rule13 = "<templatee:thirteenth><quote:openquote><speakernoun:Alice><directverb:tell><noun:Duchess><noun:cat><directverb:speak><noun:manners><noun:Alice><directverb:tell><noun:ear><noun:hearth><noun:cook><directverb:sneeze><noun:kitchen><quote:closequote>";
+	final String rule13 = "<templatee:thirteenth><quote:openquote><speakernoun:Alice><directverb:tell><directobject:Duchess><noun:cat><directverb:speak><noun:manners><noun:Alice><directverb:tell><noun:ear><noun:hearth><noun:cook><directverb:sneeze><noun:kitchen><quote:closequote>";
 	
 	//Extra Templates
 	//“Begin at the beginning," the 
 	//King said, very gravely, "and go on till you come to the end: then stop.” 
-	final String rule14 = "<template:fourth><quote:openquote><speakernoun:King><signalverb:said><misctext:misc><quote:closequote>";
+	final String rule14 = "<template:fourth><quote:openquote><speakernoun:King><signalverb:said><directobject:you><misctext:misc><quote:closequote>";
 	
 	//Extra Template
 	//Oh, you can’t help that,” said the cat. “We’re all mad here.”
 	//Extra Template
-	final String rule15 = "<template:fifteenth><quote:openquote><signalverb:said><misctext:misc><speakernoun:cat><cquote:closequote>";
+	final String rule15 = "<template:fifteenth><quote:openquote><directobject:you><signalverb:said><misctext:misc><speakernoun:cat><cquote:closequote>";
 	
 	//Extra Template
 	//I think I should understand that better,
@@ -252,7 +252,7 @@ public class TemplateRules {
 	//"To-morrow," he would add, smiling at them with a slightly menacing 
 	//geniality, "you'll be settling down to serious work. You won't have time 
 	//for generalities. Meanwhile ..." 
-	final String rule21 = "<template:twenty-first><quote:openquote><misctext:misc><speakernoun:he>";	
+	final String rule21 = "<template:twenty-first><quote:openquote><misctext:misc><speakernoun:he><directobject:you>";	
 	
 	///rule 22
 	///"I shall begin at the beginning," said the D.H.C. and the more zealous 
@@ -264,13 +264,13 @@ public class TemplateRules {
 //	have to be kept at thirty-five instead of thirty-seven. Full blood heat 
 	//sterilizes." Rams wrapped in theremogene beget no lambs. 
 
-	final String rule22 = "<template:twenty-second><quote:openquote><speakernoun:I><misctext:misc><signalverb:said>";
+	final String rule22 = "<template:twenty-second><quote:openquote><speakernoun:I><misctext:misc><signalverb:said><directobject:students";
 	
 	
 	//rule 23
 	//"Bokanovsky's Process," repeated the Director, and the students un- 
 	//derlined the words in their little notebooks. 
-	final String rule23 = "<tempalate:twenty-third><quote:openquote><misctext:misc><signalverb:repeated><speakernoun:the Director>";
+	final String rule23 = "<tempalate:twenty-third><quote:openquote><misctext:misc><signalverb:repeated><speakernoun:the Director><directobject:students>";
 	
 	
 	//rule 24
@@ -291,7 +291,7 @@ public class TemplateRules {
 	//"Bokanovsky's Process is one of the major instruments of social stabil- 
 	//ity!
 	
-	final String rule26 = "<template:twenty-six:rule<quote:openquote><misctext:misc><noun:boy><speakernoun:Director>";
+	final String rule26 = "<template:twenty-six:rule<quote:openquote><misctext:misc><directobject:boy><speakernoun:Director>";
 	//rule 27
 	//"Ninety-six identical twins working ninety-six identical machines!" The 
 	//voice was almost tremulous with enthusiasm. "You really know where 
@@ -325,14 +325,14 @@ public class TemplateRules {
 	//passing at the moment. "Mr. Foster," he called. The ruddy young man 
 	//approached. "Can you tell us the record for a single ovary, Mr. Foster?" 
 
-	final String rule30 = "<template:thirty><quote:openquote><misctext:misc><speakernoun:he>";
+	final String rule30 = "<template:thirty><quote:openquote><misctext:misc><speakernoun:he><directobject:foster>";
 	
 	//rule31
 	//"That's the spirit I like!" cried the Director, and clapped Mr. Foster on 
 	//the shoulder. "Come along with us, and give these boys the benefit of 
 	///your expert knowledge." 
 
-	final String rule32 = "<template:thirty-one><quote:openquote><misctext:misc><signalverb:cried><speakernoun:Director>";
+	final String rule32 = "<template:thirty-one><quote:openquote><misctext:misc><signalverb:cried><speakernoun:Director><directobject:foster";
 	
 	//rule33
 	//"Containing all the relevant information," added the Director. 
@@ -352,7 +352,7 @@ public class TemplateRules {
 	//humouredly and shook his head. 
 	
 	
-	final String rule34 = "<template:thirty-four><quote:openquote><miscctext:misc><signalverb:repeated><speakernoun:Foster>";
+	final String rule34 = "<template:thirty-four><quote:openquote><miscctext:misc><signalverb:repeated><directobject:he><speakernoun:Foster>";
 	//rule35
 	//"The Predestinators send in their figures to the Fertilizers." 
 	//"Who give them the embryos they ask for." 
@@ -383,13 +383,13 @@ public class TemplateRules {
 	//"Give them a few figures, Mr. Foster," said the Director, who was tired 
 	//of talking. 
 	
-	final String rule38 = "template:thirty-eight><quote:openquote><misctext:misc><noun:Foster><signalverb:said><speakernoun:Director>";
+	final String rule38 = "template:thirty-eight><quote:openquote><misctext:misc><directobject:Foster><signalverb:said><speakernoun:Director>";
 	
 	
 	//rule39
 	//"That's the spirit I like," said the Director once more. "Let's walk 
 	//around. You tell them everything, Mr. Foster." 
-	final String rule39 = "<template:thirty-nine><quote:openquote><misctext:misc><signalverb:said><speakernoun:Director>";
+	final String rule39 = "<template:thirty-nine><quote:openquote><misctext:misc><signalverb:said><speakernoun:Director><directobject:foster>";
 	
 	
 	
@@ -405,7 +405,7 @@ public class TemplateRules {
 	//rule 41
 	//"Can you hear me?" I yelled.
 	
-	final String rule41 = "<tempalte:forty-one><quote:openquote><misctext:misc><noun:you><misctext:text><speakernoun:I><signalverb:yelled>";
+	final String rule41 = "<tempalte:forty-one><quote:openquote><misctext:misc><directobject:you><misctext:text><speakernoun:I><signalverb:yelled>";
 	
 	//rule 42
 	//	"That's why we rented this car. It was the only way to do it. Can you grasp that?"
@@ -415,7 +415,7 @@ public class TemplateRules {
 	//rule 43
 	//	"Indeed," he said. "We must do it."
 	
-	final String rule43 = "<template:forty-three><quote:openquote><misctext:text><speakernoun:he><signalverb:said>";
+	final String rule43 = "<template:forty-three><quote:openquote><misctext:text><speakernoun:he><signalverb:said><directobject:we>";
 	
 	//rule 44
 	//	 "Say there...uh ...you fellas are going to be careful with this car, aren't you?"
@@ -445,11 +445,11 @@ public class TemplateRules {
 	//rule 48 "Shoot it" said my attorney. "Not yet," I said, "I want to study its habits."
 	//
 	
-	final String rule48 = "<template:forty-eight><quote:openquote><misctext:misc><speakernoun:I><signalverb:said>";
+	final String rule48 = "<template:forty-eight><quote:openquote><misctext:misc><speakernoun:attorney><directobject:me><signalverb:said>";
 	
 	//rule 49 "He laughed distractedly. "Listen madam," he snapped.
 	
-	final String rule49 = "<tempalate:forty-nine><quote:openquote><speakernoun:He>";
+	final String rule49 = "<tempalate:forty-nine><quote:openquote><speakernoun:He><signalverb:laughed><directobject:madam>";
 	
 	//rule 50 "We'll see about thi;s!" my attorney said as we drove away. "You paranoid scum"
 	
@@ -475,7 +475,7 @@ public class TemplateRules {
 	
 	//rule 55 "What is this?" she snapped. "A napkin," said my attorney.
 	
-	final String rule55 = "<template:fifty-five><quote:openquote><misctext:misc><speakernoun:she><signalverb:snapped>";
+	final String rule55 = "<template:fifty-five><quote:openquote><misctext:misc><speakernoun:she><signalverb:snapped><directobject:attorney>";
 	
 	//rule 56 "Well," I said, "I guess they've brought the car around by now. Let's get the stuff
 	// out of the trunk.
@@ -509,7 +509,7 @@ public class TemplateRules {
 	
 	//"If you feel this is a problem, I understand if you wish to drop the mnj"
 	
-	final String rule61 = "<template:sixty-one><quote:openquote><misctext:misc><noun:you><misctext:misc><speakernoun:I>";
+	final String rule61 = "<template:sixty-one><quote:openquote><misctext:misc><directobject:you><misctext:misc><speakernoun:I>";
 	
 	// rule 62
 	
@@ -566,17 +566,17 @@ public class TemplateRules {
 	//rule 71
 	//	Morrie raised his eyebrows, "Will you sing something for me?"
 	
-	final String rule71 = "<template:seventy-one><open:openquote><speakernoun:Morrie>";
+	final String rule71 = "<template:seventy-one><open:openquote><speakernoun:Morrie><directobject:me>";
 	
 	//rule 72
 	// "You're my only brother," I said. "I dont want to lose you, I love you."
-	final String rule72 = "<template:seventy-two><open:openquote><noun:you're><misctext:misc><speakernoun:I><signalverb:said>";
+	final String rule72 = "<template:seventy-two><open:openquote><noun:you're><misctext:misc><speakernoun:I><signalverb:said><directobject:you>";
 	
 	//rule 73
 	
 	//	Ted, I need to check you out before I agree to do this interview."
 	
-	final String rule73 = "<template:seventy-third><open:openquote><noun:Ted><speakernoun:I>";
+	final String rule73 = "<template:seventy-third><open:openquote><directobject:Ted><speakernoun:I>";
 	
 	//rule 74
 	
@@ -595,17 +595,17 @@ public class TemplateRules {
 	//its ok to cry."
 	// 
 	
-	final String rule76 = "<template:seventy-six><speakernoun:He><signalverb:grinned>";
+	final String rule76 = "<template:seventy-six><speakernoun:He><directobject:Mitch><signalverb:grinned>";
 	
 	//rule 77
 	//"We're Tuesday people" he said. Tuesday people, I repeated.
 	
-	final String rule77 = "<template:seventy-seven><open:openquote><speakernoujn:We're>";
+	final String rule77 = "<template:seventy-seven><open:openquote><speakernoun:We're><directobject:I>";
 	
 	//rule 78
 	//"Mitch? Morrie said."
 	
-	final String rule78 = "<template:seventy-eight><open:openquote><speakernonun:Morrie><signalverb:said>";
+	final String rule78 = "<template:seventy-eight><open:openquote><speakernonun:Morrie><directobject:Mitch><signalverb:said>";
 	
 	//rule 79
 	//"Why not? Like I said, no one really believes they are going to die?"
@@ -615,43 +615,43 @@ public class TemplateRules {
 	//rule 80
 	// "You've cut off your hair," asked Jim.
 	
-	final String rule80 = "<template:eighty><open:openquote><misctext:misc><signalverb:asked><speakernoun:Jim>";
+	final String rule80 = "<template:eighty><open:openquote><misctext:misc><directobject:you><signalverb:asked><speakernoun:Jim>";
 	
 	//rule 81
 	//"A chance said she!"
 	
-	final String rule81 = "<template:eighty-one><open:openquote><misctext:misc><signalverb:said><speakernoun:she>";
+	final String rule81 = "<template:eighty-one><open:openquote><misctext:misc>signalverb:said><speakernoun:she>";
 	
 	//rule 82
 	//"Well she said to the burglar."
 	
-	final String rule82 = "<template:eighty-two><open:openquote><misctext:misc><speakernoun:she><signalverb:said>";
+	final String rule82 = "<template:eighty-two><open:openquote><misctext:misc><speakernoun:she><signalverb:said><directobject:burglar>";
 	
 	//rule 83
 	//"Certainly , sir, " he tittered. 
 	
-	final String rule83 = "<template:eighty-three><open:openquote><misctext:misc><speakernoun:he><signalverb:tittered>";
+	final String rule83 = "<template:eighty-three><open:openquote><misctext:misc><directobject:sir><speakernoun:he><signalverb:tittered>";
 	
 	
 	//rule 84
 	//"Well, she said. "It certainly dhows you have imagination."
 	
-	final String rule84 = "<template:eighty-four><open:openquote><misctext:misc><speakernoun:she><signalverb:said>";
+	final String rule84 = "<template:eighty-four><open:openquote><misctext:misc><speakernoun:she><signalverb:said><directobject:you>";
 	
 	//rule 85
 	//"What do you mean by fresh?"
 
-	final String rule85 = "<template:eighty-five><speakernoun:unknown>";
+	final String rule85 = "<template:eighty-five><speakernoun:I><directobject:you>";
 	
 	//rule 86
 	//"Everything," he answered almost savagely. 
 	
-	final String rule86 = "<template:eighty-six><open:openquote><misctext:misc><speakernoun::he><signalverb:answered>";
+	final String rule86 = "<template:eighty-six><open:openquote><misctext:misc><directobject:I><speakernoun::he><signalverb:answered>";
 	
 	//rule 87
 	//"Robert", said the calm, cool, voice of his judge. "I thought I married a gentleman."
 	
-	final String rule87 = "<template:eighty-seven><open:openquote><misctext:misc><signalverb:said><misctext:misc><speakernoun:judge>";
+	final String rule87 = "<template:eighty-seven><open:openquote><misctext:misc><directobject:Robert><signalverb:said><misctext:misc><speakernoun:judge>";
 	
 	//rule 88
 	//"No," said Teddy, "no one minds what he says , just so he doesn't do it again."
@@ -666,7 +666,7 @@ public class TemplateRules {
 	//rule 90
 	//"Excuse me, friend," said he. Can I quickly talk with you on the level?"
 	
-	final String rule90 = "<template:ninety><open:openquote><misctext:misc><signalverb:said><speakernoun:he>";
+	final String rule90 = "<template:ninety><open:openquote><misctext:misc><directobject:friend><signalverb:said><speakernoun:he>";
 	
 	//rule 91
 	//"All right," said the stranger. "And then what?"
@@ -676,7 +676,7 @@ public class TemplateRules {
 	//rule 92
 	// "How's my girl?" he asked, holding her close.
 
-	final String rule92 = "<template:ninety-two><open:openquote><misctext:misc><speakernoun:he><signalverb:said>";
+	final String rule92 = "<template:ninety-two><open:openquote><misctext:misc><directobject:girl><speakernoun:he><signalverb:said>";
 	
 	//rule 93
 	//	"I'll see how it looks later on, " was his decision.
@@ -686,7 +686,7 @@ public class TemplateRules {
 	//rule 94
 	//	"His arm," said Chad, "is hardr'n a diamond."
 	
-	final String rule94 = "<template:ninety-four><open:openquote><misctext:misc><signalverb:said><speakernoun:Chad>";
+	final String rule94 = "<template:ninety-four><open:openquote><misctext:misc><directobject:his arm><signalverb:said><speakernoun:Chad>";
 	
 	//rule 95
 	//	"How's that? asked McGuire , a little startled.
@@ -715,7 +715,7 @@ public class TemplateRules {
 	//rule 100
 	//	"For goodness sakes get out."
 	
-	final String rule100 = "<template:one-hundred><speakernoun:unkown>";
+	final String rule100 = "<template:one-hundred><speakernoun:I><directobject:you>";
 	
 
 

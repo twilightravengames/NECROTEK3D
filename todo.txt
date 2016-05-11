@@ -1,0 +1,4 @@
+1. Get 'said' and other signal verbs detected and put in tags. The problem is
+   I'm looking at one of the two entries in the VoZ output. Doubles show up, like speak,
+   but ones like say said - said doesn't show up
+2. With a single quote or more detected, somehow analyze the speakernoun after it

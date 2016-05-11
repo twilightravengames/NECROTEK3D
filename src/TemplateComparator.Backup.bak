@@ -1,0 +1,361 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class TemplateComparator {
+	///xmlpattern and template
+	
+	
+	//1.start by matching templates
+	//2.if you have a match then do 3 and below
+	
+	//3.finds signalverb(s) in template
+	//4."line up" signalverb in temp late and pattern
+	//5. extract speaker and speakee position from template
+	
+	//maybe?
+	//4.for each signal verb look at previouse tag
+	//5.for each signal verb look at next tag
+	//(pull them in three out of the xml pattern
+	
+
+
+
+	public HashMap<String,String> matcher (XMLPattern xmlPattern, HashMap<String,String> match, String templateString)
+	{
+
+
+
+
+
+
+		//iterate over templates, everytime it finds a match in
+		//the input pattern, it moves to the next tag in the
+		//template. When it reaches the last tag and fulfills it
+		//then a match is returned
+		//If it finishes the pattern without fulfilling the template
+		//then the compariison is rejected.
+		//
+
+		//iterate over templates
+		//template name
+
+		
+		List<String> templateList = Arrays.asList(templateString.split("<"));
+
+		for (int i=0;i<templateList.size();i++)
+		{
+			//extract tags from String templateString
+			//
+			String [] templateXML = null;
+
+			//break into templates
+			templateXML = templateList.toArray(new String[templateList.size()]);
+
+			//each String[k] is a tag
+
+			List<String> patternList = Arrays.asList(xmlPattern.XMLPatternType.get(i).name.split("<"));
+
+
+			String [] patternXML = null;
+
+			patternXML = patternList.toArray(new String[patternList.size()]);
+			printXMLList(patternList, "Pattern");
+			printXMLList(templateList, "Tempaltes");
+				//				
+
+				
+			HashMap<String,String m = new HashMap<String, String>();	
+			
+				
+			for (int l=0;l<patternXML.length;l++)
+			{
+					StringTokenizer st = StringTokenizer(patternXML[l], ">");
+					
+					
+					//Pattern is sehowing up properly
+					///Template however is also working properly
+					//although there are more template tokens than patterns
+					//so some of them show up empty
+					if (templateXML != null && templateXML.length > 0)
+					{
+						//System.out.println("Template Processed XML pattern 0 is  " + patternXML[0]);
+
+						//System.out.println("Template Processed Template 0 is " + templateXML[0]);
+						System.out.println("Template Part of Speech is " + templateXML[0]);
+
+						System.out.println("Template Content " + templateXML[1]);
+					}
+
+
+
+
+
+					//continue;
+
+					if (xmlPattern.XMLPatternType.contains("templates"))
+					{
+						////template marker, skip over
+						System.out.println("Template Marker");
+						continue;
+					}
+
+
+
+
+					HashMap<String,String> m = null;
+					//match is null
+					if (m == null)
+					{
+						System.out.println("m null");
+					}
+
+					match.putAll(m);
+					
+					
+					
+					for (int q = 0; q<templateXML.length;q++)
+					{
+						System.out.println("TEMPALTE TAG: " + templateXML[q]);
+						System.out.println("PART OF SPEECH: " + getSpeech(patternXML[q]));
+						System.out.println("GET LEMMA: " + getLemma(patternXML[q]));
+					}
+					
+					for (int n = 0;n<patternXML.length;n++)
+					{
+						System.out.println("PATTERN TAG: " + patternXML[n]);
+						System.out.println("PART OF SPEECH: " + getSpeech(patternXML[n]));
+						System.out.println("GET LEMMA: " + getLemma(patternXML[n]));
+
+					}
+
+
+					if (templateXML != null && t != patternXML)
+					{
+						if (patternXML[l].contains(templateXML[i] || templateXML[i].contains(patternXML[i])
+						{
+							System.out.println("FOUND A MATCH");
+							System.out.println("TEMPLATE: " + templateXML[i]);
+							System.out.println("PATTERN: " + patternXML[l]);
+							System.out.println("ALIGNING...");
+							m = alignMatchedSpeaker(patternXML, templateXML);
+
+						}
+						break;
+					
+					}
+					
+					
+
+					return match;
+
+				}
+			}
+			
+		}
+		return null;
+
+	}
+	private StringTokenizer StringTokenizer(String string, String string2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public String [] thirdTemplatePattern(String phrase, String partOfSpeech, String lemma)
+	{
+		String[] prepared = null;
+		
+		String tphrase = phrase.replace('<', ' ');
+		
+		String ephrase = phrase.replace('>', ' ');
+		
+		//System.out.println("Template EPHRASE PARTS " + ephrase);
+		
+		String[] parts = ephrase.split(":");
+
+
+		
+		//System.out.println("Prepared split 0 " + parts[0]); //part of speech but with <
+		//System.out.println("Prepared split 1 " + parts[1]); //lemma correct
+		//this is showing an error
+		
+		if (parts.length >= 2)
+		{
+			System.out.println("third template pattern size is " + parts.length);
+		
+			System.out.println("Template split 0 " + parts[0]); //part of speech but with 
+			System.out.println("Template split 1 " + parts[1]);
+		}
+		
+		//System.out.println("Prepared split 1 " + parts[1]); //lemma correct
+		//this is showing an error
+		
+		
+		//System.out.println("Indexing 0 " + lastSplit[0]);
+		//System.out.println("INdexing 1" + lastSplit[1]);
+		//output xml 
+		
+		if (parts.length >= 2)
+		{
+			//partOfSpeech = prepared[0];
+			partOfSpeech = parts[0];
+			lemma = parts[1];
+			
+			System.out.println("Template PoS " + parts[0] + " lemma " + lemma);
+		}
+		
+		if (parts.length >= 2)
+		{
+			String [] returnValue = new String[2];
+		
+			returnValue[0] = parts[0];
+			returnValue[1] = parts[1];
+			return returnValue;
+
+		}
+		else
+		{
+			return null;
+		}
+		
+		
+	}
+	
+	HashMap<String, String> identifySpeaker(String source, String template)
+	{
+		return null;
+	}
+
+	HashMap<String, String> identifySpeakee(String source, String template)
+	{
+		return null;
+	}
+			
+	String [] preparePattern(String pattern, String pos, String lemma)
+	{
+		//convert patterns/templates into an array
+		
+		 String [] patternXML = null;
+		 return patternXML;
+	}
+	
+	HashMap<String,String> alignMatchedSpeaker(String pattern, String template)
+	{
+		System.out.println("Running alignMatchedSpeaker");
+		//assuming template and patterns are matches
+		//find first speakernoun then find speakee from the template
+		//and match it to the pattern
+		int speakercounter=0;
+		int tmpcounter =0;
+		StringTokenizer str = new StringTokenizer(template, ">");
+		while (str.hasMoreTokens()) //while there are more tags
+		{
+			String st = str.nextToken(); //grab a template tag
+			tmpcounter++;
+			
+			//while there are pattern tags
+			StringTokenizer patternTok = new StringTokenizer(pattern, ">"); //tokenizzer on pattern
+			while (patternTok.hasMoreTokens())
+			{
+				//spilt pattern tag
+				String patternTag = patternTok.nextToken(); //grab a pattern tag				
+				
+				StringTokenizer ptoken = new StringTokenizer(patternTag); //grab a pattern tag
+				
+				while (ptoken.hasMoreTokens())
+				{
+					speakercounter++;
+					
+					String patternTagToken = ptoken.nextToken(); //grab a pattern tag
+					
+					String [] strArray = patternTagToken.split(":"); ///split over colon
+					
+					String nameOfToken = strArray[1];
+					String partOfSpeech = strArray[0];
+					
+					System.out.println("Namae of Token: " + nameOfToken);
+					System.out.println("Part of Speech" + partOfSpeech);
+					
+					
+					//split template
+					String [] tArray = template.split(":");
+					String nameOfTemplateToken = tArray[0];
+					String partOfSpeechTemplate = tArray[1];
+		
+					
+					if (speakercounter == tmpcounter)
+					{
+						//positional match
+						System.out.println("Discovered a positional matvh");
+						System.out.println("Template Name: " + nameOfTemplateToken);
+						System.out.println("Template Part of Speech " +  partOfSpeechTemplate);
+						System.out.println("Pattern Name: " + nameOfToken);
+						System.out.println("Part of Speech" + partOfSpeech);
+						
+						//save results
+						HashMap<String, String> hash = new HashMap<String,String>();
+						hash.put(nameOfToken, nameOfTemplateToken);     //template and pattern words
+						
+						return (hash);
+					}
+				}
+			}
+
+		}
+		return null;
+	}
+
+	
+	
+	
+	
+	
+	//A:: XML LISTS ARE SHOWING UP AS NULL!!! NOT GOOD!!@!
+	public void printXMLList(String [] xMLList, String name)
+	{
+		if (xMLList == null)
+		{
+			System.out.println("print xml xmlList is null for )" + name);
+			return;
+		}
+		for (int i=0;i<xMLList.length;i++)
+		{
+			System.out.println("XML LIst for " + name + xMLList[i]);
+		}
+	}
+	
+	public	void printPatternXMLList(String [] patternXML,String id)
+	{
+		System.out.print("Print Pattern XML::" );
+		for (int i=0;i<patternXML.length;i++)
+		{
+			System.out.print(patternXML[i]);
+		}
+	}
+	
+	
+	public String getSpeech(String inputTag)
+	{
+		String [] speech = inputTag.split(":");
+		return speech[0];
+	}
+	
+	public String getLemma(String inputTag)
+	{
+		String [] lemma = inputTag.split(":");
+		if (lemma != null)
+		{
+			return lemma[1];
+		}
+		
+		return null;
+	}
+	
+
+}
+
+
+	
+
+
