@@ -468,7 +468,7 @@ public class TemplateComparator {
 		int template_ctr = 0;
 		int pattern_ctr = 0;
 		
-		
+		System.out.println("Identifying Speaker");
 		//signal verb is after speakernoun
 		
 		for (int i=0;i<template.size();i++)
